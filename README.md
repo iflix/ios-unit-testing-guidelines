@@ -53,6 +53,35 @@ describe("BananService") {
 
 Each `it` block should have only one assertion. This is in line with the _Isolated_ principle.
 
+```swift
+describe("Movie") {
+  context("when initializing from dictionary") {
+  
+    let movie: Movie!
+  
+    let name = "The Dark Knight Rises"
+    let genre = "Action"
+    let year = 2012
+    
+    beforeEach {
+      movie = Movie(dict: ["name": name, "genre": genre, "year": year])
+    }
+
+    it("maps the name property") {
+      expect(movie.name) == name
+    }
+    
+    it("maps the genre property") {
+      expect(movie.genre) == genre
+    }
+    
+    it("maps the year property") {
+      expect(movie.year) == year
+    }
+  }
+}
+```
+
 ### AAA: Arrange, Act, Assert
 
 Each test should be organised in [three steps](http://wiki.c2.com/?ArrangeActAssert).

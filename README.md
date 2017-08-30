@@ -106,3 +106,37 @@ describe("Emojificator") {
   }
 }
 ```
+
+### Fixtures
+
+We already established that tests should be readable and compact. This is not often possible or straightforward. The system under test might have a number of dependencies, and reducing it might not be possible at the time.
+
+In such case it is useful to be able to initialize all the dependencies of the system under test using one liners, and also have meaningful defaults.
+
+Such kind of default values are called [fixtures](https://github.com/junit-team/junit4/wiki/Test-fixtures), and can be defined as:
+
+> A test fixture is a fixed state of a set of objects used as a baseline for running tests. The purpose of a test fixture is to ensure that there is a well known and fixed environment in which tests are run so that results are repeatable.
+
+Here's an example to follow when providing fixtures for your components.
+
+```swift
+// APIService+Fixture.swift
+extension APIService {
+
+  static func fixture(
+    pageSize: Int = 42,
+    networkService: NetworkService = NetworkService.fixture()
+  ) -> APIService {
+    return APIService(
+      pageSize: pageSize,
+      networkService: networkService,
+      prefix: "foobar"
+    )
+  }
+}
+
+let apiService = APIService.fixture()
+let otherAPIService = APIService.fixture(pageSize: 2)
+```
+
+An important thing to note is that when writing the unit test for `APIService` we would **not** use it `fixture` method to get the instance to test, but rather the actual `init`. Fixtures are only meant to use when providing dependencies.

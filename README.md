@@ -36,11 +36,16 @@ For these reasons we chose to use [Quick](https://github.com/Quick/Quick) and [N
 
 ```swift
 describe("BananService") {
+
   context("when fetching bananas") {
+
     context("if the request succeeds") {
+
       it("returns bananas") { }
     }
+
     context("if the request fails") {
+
       it("returns a banana error wrapping the received one") { }
     }
   }
@@ -55,14 +60,15 @@ Each `it` block should have only one assertion. This is in line with the _Isolat
 
 ```swift
 describe("Movie") {
+
   context("when initializing from dictionary") {
-  
+
     let movie: Movie!
-  
+
     let name = "The Dark Knight Rises"
     let genre = "Action"
     let year = 2012
-    
+
     beforeEach {
       movie = Movie(dict: ["name": name, "genre": genre, "year": year])
     }
@@ -70,11 +76,11 @@ describe("Movie") {
     it("maps the name property") {
       expect(movie.name) == name
     }
-    
+
     it("maps the genre property") {
       expect(movie.genre) == genre
     }
-    
+
     it("maps the year property") {
       expect(movie.year) == year
     }
@@ -94,6 +100,7 @@ The ideal test would have one line per step, although this is not always feasibl
 
 ```swift
 describe("Emojificator") {
+
   it("add sparkle emoji to the given string") {
     // Arrange
     let emojificator = Emojificator()
@@ -140,3 +147,13 @@ let otherAPIService = APIService.fixture(pageSize: 2)
 ```
 
 An important thing to note is that when writing the unit test for `APIService` we would **not** use it `fixture` method to get the instance to test, but rather the actual `init`. Fixtures are only meant to use when providing dependencies.
+
+## Code Organization
+
+### One new line between every `describe`, `context`, `it`, `beforeEach`, and `afterEach` block
+
+Vertical spacing helps maintaining readability by making the code easier to scan for the eye. Consistency also helps readability, code that looks familiar takes less time to be mentally parsed.
+
+In order to promote vertical spacing and consistency this convention applies: "there should be a new line on top of every _group_, that is, on top of every `describe`, `context`, `it`, `beforeEach`, `afterEach`". All the examples in this document follow this rule.
+
+Note that there should be no new line between the closing `}` of those blocks, in order to keep the code more compact where readability is not important.

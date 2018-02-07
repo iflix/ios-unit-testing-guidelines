@@ -35,7 +35,7 @@ For tests to be good aid to development they need to be readable. That goes beyo
 For these reasons we chose to use [Quick](https://github.com/Quick/Quick) and [Nimble](https://github.com/Quick/Nimble) rather thank vanilla XCTest, for the [RSpec style]() structure they offer
 
 ```swift
-describe("BananService") {
+describe("BananaService") {
 
   context("when fetching bananas") {
 

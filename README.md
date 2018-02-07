@@ -148,6 +148,18 @@ let otherAPIService = APIService.fixture(pageSize: 2)
 
 An important thing to note is that when writing the unit test for `APIService` we would **not** use it `fixture` method to get the instance to test, but rather the actual `init`. Fixtures are only meant to use when providing dependencies.
 
+### Nimble conventions
+
+**Use custom operators for equality when possible**
+
+```swift
+// Preferred
+expect(1) == 1
+
+// Not Preferred
+expect(1).to(equal(1))
+```
+
 ## Code Organization
 
 ### One new line between every `describe`, `context`, `it`, `beforeEach`, and `afterEach` block
